@@ -17,7 +17,7 @@ jobs:
           echo "Total Runners I have: $total_cnt"
           total_runners_cnt=`expr $total_cnt - 1`
           echo $total_runners_cnt
-          for i in {0..$total_runners_cnt}
+          for i in $(seq 0 1 $total_runners_cnt)
           do
             echo "Checking runner $i"
             status=`echo $json_response | jq .runners[$i].status`
