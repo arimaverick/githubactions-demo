@@ -1,0 +1,15 @@
+name: Cleanup Runner
+
+on:
+  push:
+
+jobs:
+  cleanup-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: List Runners
+        run: |
+          export GITHUB_PAT={{ secrets.cleanup-runner }}
+          json_response=$(curl -sX GET -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_PAT" https://api.github.com/repos/arimaverick/terraform-repo/actions/runners )
+          echo $json_response
