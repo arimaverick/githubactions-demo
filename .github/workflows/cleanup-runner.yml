@@ -21,6 +21,7 @@ jobs:
           do
             echo "Checking runner $i"
             status=`echo $json_response | jq .runners[$i].status`
+            echo $status
             if [ $status == "offline"]
             then
               runner_id=`echo $json_response | jq .runners[$i].id`
