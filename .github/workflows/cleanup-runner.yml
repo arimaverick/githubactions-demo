@@ -29,9 +29,3 @@ jobs:
               a=`expr $a + 1`
             fi 
           done
-          if [ $a -eq 0 ]
-          then 
-             echo "Great! There are NO OFFLINE runner today" 
-          else
-             echo "Total OFFLINE runners deleted: $a"
-          fi   
