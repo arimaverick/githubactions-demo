@@ -26,8 +26,7 @@ jobs:
             then
               runner_id=`echo $json_response | jq .runners[$i].id`
               curl -sX DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_PAT" https://api.github.com/repos/arimaverick/terraform-repo/actions/runners/$runner_id
-            else
-              a=`expr $a + 0`
+              a=`expr $a + 1`
             fi 
           done
           if [ $a -eq 0 ]
