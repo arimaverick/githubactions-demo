@@ -17,21 +17,21 @@ jobs:
           echo "Total Runners: $total_cnt"
           #total_runners_cnt=`expr $total_cnt - 1`
           #echo $total_runners_cnt
-          COUNTER=0
+          cnt=0
           a=0
           #for i in $(seq 0 1 $total_runners_cnt)
-          while [  $COUNTER -lt $total_cnt ]
+          while [  $cnt -lt $total_cnt ]
           do
-            echo "Checking runner $i"
-            status=`echo $json_response | jq -r .runners[$i].status`
+            echo "Checking runner $cnt"
+            status=`echo $json_response | jq -r .runners[$cnt].status`
             #echo $status
             if [ $status == 'offline' ]
             then
-              runner_id=`echo $json_response | jq .runners[$i].id`
+              runner_id=`echo $json_response | jq .runners[$cnt].id`
               curl -sX DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_PAT" https://api.github.com/repos/arimaverick/terraform-repo/actions/runners/$runner_id
               a=`expr $a + 1`
             fi 
-            COUNTER=`expr $COUNTER + 1`
+            cnt=`expr $cnt + 1`
           done
           if [ $a -eq 0 ]
           then 
