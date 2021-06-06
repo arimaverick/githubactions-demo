@@ -9,8 +9,8 @@ on:
 jobs:
   build:
     name: respondDispatcher
-    env:
-      GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
+    #env:
+    #  GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-18.04
     steps:     
     - name: dispatcher-trap
