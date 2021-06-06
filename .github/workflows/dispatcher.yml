@@ -8,11 +8,12 @@ on:
 
 jobs:
   build:
-     env:
+    name: respondDispatcher
+    env:
       GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
-     runs-on: ubuntu-18.04
-     steps:     
-       - name: dispatcher-trap
-         id: dispatchtrap
-         run: |
-          echo "i ma dispatched"
+    runs-on: ubuntu-18.04
+    steps:     
+    - name: dispatcher-trap
+      id: dispatchtrap
+      run: |
+        echo "i ma dispatched"
