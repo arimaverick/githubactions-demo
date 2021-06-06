@@ -12,10 +12,13 @@ jobs:
     #env:
     #  GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-18.04
-    steps:     
-    - name: dispatcher-trap
-      id: dispatchtrap
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@v2
       with:
         version: ${{ github.event.client_payload.version }}
+        ref: ${{ github.event.client_payload.ref }}
+    - name: dispatcher-trap
+      id: dispatchtrap
       run: |
         echo "i ma dispatched, version: $version"      
