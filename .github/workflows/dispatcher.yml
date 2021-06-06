@@ -15,5 +15,7 @@ jobs:
     steps:     
     - name: dispatcher-trap
       id: dispatchtrap
+      with:
+        version: ${{ github.event.client_payload.version }}
       run: |
-        echo "i ma dispatched"
+        echo "i ma dispatched, version: $version"      
