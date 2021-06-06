@@ -16,9 +16,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        version: ${{ github.event.client_payload.version }}
         ref: ${{ github.event.client_payload.ref }}
     - name: dispatcher-trap
       id: dispatchtrap
+      with:
+        version: ${{ github.event.client_payload.version }}
       run: |
-        echo "i ma dispatched, version: $version"      
+        echo "i ma dispatched, version: $INPUT_VERSION"      
