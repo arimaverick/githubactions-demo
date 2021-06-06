@@ -19,7 +19,7 @@ jobs:
         ref: ${{ github.event.client_payload.ref }}
     - name: dispatcher-trap
       id: dispatchtrap
-      with:
+      env:
         version: ${{ github.event.client_payload.version }}
       run: |
-        echo "i ma dispatched, version: $INPUT_VERSION"      
+        echo "i ma dispatched, version: $version"      
