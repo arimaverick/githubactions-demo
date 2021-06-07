@@ -1,8 +1,6 @@
 name: TestDispatcher
 
 on:
-  push:
-    branches: [ main ]
   repository_dispatch:
     types: [build]
 
