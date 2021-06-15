@@ -25,7 +25,7 @@ jobs:
       run: |
         git config --global user.name ${{ github.workflow }}
         git config --global user.email "${{ github.workflow }}@users.noreply.github.com"
-        gh api repos/{owner}/labels -f name="$LABEL" -f description="update version" || true
+        gh api repos/{owner}/{repo}/labels -f name="$LABEL" -f color=2b9bdf -f description="update version" || true
         git checkout -b $BRANCH
         echo "Latest Verion: $version"
         cat $version > version.txt
