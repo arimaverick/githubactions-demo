@@ -1,4 +1,4 @@
-name: autoPR
+name: Cleanup Runner
 
 on:
   push:
