@@ -35,7 +35,11 @@ jobs:
         pr_link=`gh pr list -l "$LABEL"`
         echo $pr_link
         gh pr merge $pr_link --auto --merge
+        git config -l | grep user.name
+        git config -l | grep user.email
         git config --global user.name arimaverick
         git config --global user.email "arimaverick@gmail.com"
+        git config -l | grep user.name
+        git config -l | grep user.email
         gh pr review $pr_link --approve -b "interesting"
         gh pr close $pr_link -d $BRANCH
