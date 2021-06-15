@@ -1,4 +1,4 @@
-name: TestDispatcher
+name: autoPR
 
 on:
   repository_dispatch:
