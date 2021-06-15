@@ -9,7 +9,7 @@ jobs:
     name: respondDispatcher
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      BRANCH: upgrade_${{}}
+      BRANCH: upgrade_version_${{ github.run_id }}
     runs-on: ubuntu-latest
     steps: 
     - name: Checkout
