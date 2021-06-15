@@ -30,7 +30,7 @@ jobs:
         cat $version > version.txt
         git commit -a -m "Update version to $version"
         git push --set-upstream origin $BRANCH
-        gh pr create -B main -b "This is an automated PR" -l $LABEL -t "Version Update" 
+        gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" 
         pr_link=`gh pr list -l "$LABEL"`
         echo $pr_link
         gh pr merge --auto $pr_link -d $BRANCH
