@@ -28,7 +28,7 @@ jobs:
         gh api repos/{owner}/{repo}/labels -f name="$LABEL" -f color=2b9bdf -f description="update version" || true
         git checkout -b $BRANCH
         echo "Latest Verion: $version"
-        cat $version > version.txt
+        echo $version > version.txt
         git commit -a -m "Update version to $version"
         git push --set-upstream origin $BRANCH
         gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" 
