@@ -3,7 +3,7 @@ name: autoPR
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  repository_dispatch:
 
 jobs:
   build:
