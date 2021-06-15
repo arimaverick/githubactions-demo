@@ -31,7 +31,7 @@ jobs:
         echo $version > version.txt
         git commit -a -m "Update version to $version"
         git push --set-upstream origin $BRANCH
-        gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" --reviewer arimaverick@gmail.com
+        gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" --reviewer arimaverick
         pr_link=`gh pr list -l "$LABEL"`
         echo $pr_link
         gh pr merge $pr_link --auto --merge
