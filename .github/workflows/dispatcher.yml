@@ -31,14 +31,14 @@ jobs:
         echo $version > version.txt
         git commit -a -m "Update version to $version"
         git push --set-upstream origin $BRANCH
-        gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" 
+        gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" --reviewer arimaverick@gmail.com
         pr_link=`gh pr list -l "$LABEL"`
         echo $pr_link
         gh pr merge $pr_link --auto --merge
         git config -l | grep user.name
         git config -l | grep user.email
-        git config --global user.name umyfashion
-        git config --global user.email "umyfashion@gmail.com"
+        git config --global user.name arimaverick
+        git config --global user.email "arimaverick@gmail.com"
         git config -l | grep user.name
         git config -l | grep user.email
         gh pr review $pr_link --approve -b "interesting"
