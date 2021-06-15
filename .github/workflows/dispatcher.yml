@@ -37,8 +37,8 @@ jobs:
         gh pr merge $pr_link --auto --merge
         git config -l | grep user.name
         git config -l | grep user.email
-        git config --global user.name arimaverick
-        git config --global user.email "arimaverick@gmail.com"
+        git config --global user.name umyfashion
+        git config --global user.email "umyfashion@gmail.com"
         git config -l | grep user.name
         git config -l | grep user.email
         gh pr review $pr_link --approve -b "interesting"
