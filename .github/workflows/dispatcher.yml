@@ -21,6 +21,7 @@ jobs:
       id: dispatchtrap
       env:
         version: ${{ github.event.client_payload.version }}
+        LABEL: update version
       run: |
         git config --global user.name ${{ github.workflow }}
         git config --global user.email "${{ github.workflow }}@users.noreply.github.com"
@@ -29,5 +30,6 @@ jobs:
         cat $version > version.txt
         git commit -a -m "Update version to $version"
         git push --set-upstream origin $BRANCH
-        pr_link=`gh pr create -B main -b "This is an automated PR" -t "Version Update"`
+        gh pr create -B main -b "This is an automated PR" -l $LABEL -t "Version Update" 
+        pr_link=`gh pr list -l $LABEL`
         gh pr merge --auto $pr_link -d $BRANCH
