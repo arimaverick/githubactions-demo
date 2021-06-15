@@ -29,4 +29,4 @@ jobs:
         cat $version > version.txt
         git commit -a -m "Update version to $version"
         git push --set-upstream origin $BRANCH
-        gh pr create -B main -b "This is an automated PR"
+        gh pr create -B main -b "This is an automated PR" -t "Version Update"
