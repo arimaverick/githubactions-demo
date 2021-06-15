@@ -7,8 +7,9 @@ on:
 jobs:
   build:
     name: respondDispatcher
-    #env:
-    #  GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      BRANCH: upgrade_${{}}
     runs-on: ubuntu-18.04
     steps: 
     - name: Checkout
@@ -20,4 +21,11 @@ jobs:
       env:
         version: ${{ github.event.client_payload.version }}
       run: |
-        echo "i ma dispatched, version: $version"      
+        git config --global user.name ${{ github.workflow }}
+        git config --global user.email "${{ github.workflow }}@users.noreply.github.com"
+        git checkout -b $BRANCH
+        echo "Latest Verion: $version"
+        cat $version > version.txt
+        git commit -a -m "Update version to $version"
+        git push --set-upstream origin $BRANCH
+        gh pr create -B main -b "This is an automated PR"
