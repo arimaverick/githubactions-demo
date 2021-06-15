@@ -34,4 +34,4 @@ jobs:
         gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" 
         pr_link=`gh pr list -l "$LABEL"`
         echo $pr_link
-        gh pr merge "$pr_link" --auto -d $BRANCH --merge
+        gh pr merge $pr_link --auto -d $BRANCH --merge
