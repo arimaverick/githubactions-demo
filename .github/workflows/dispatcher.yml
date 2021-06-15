@@ -30,5 +30,4 @@ jobs:
         git commit -a -m "Update version to $version"
         git push --set-upstream origin $BRANCH
         pr_link=`gh pr create -B main -b "This is an automated PR" -t "Version Update"`
-        gh merge --auto $pr_link
-        
+        gh pr merge --auto $pr_link -d $BRANCH
