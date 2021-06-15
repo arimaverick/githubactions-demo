@@ -35,5 +35,5 @@ jobs:
         pr_link=`gh pr list -l "$LABEL"`
         echo $pr_link
         gh pr merge $pr_link --auto --merge
-        gh pr review $pr_link --approve --comment -b "interesting"
+        gh pr review $pr_link --approve -b "interesting"
         gh pr close $pr_link -d $BRANCH
