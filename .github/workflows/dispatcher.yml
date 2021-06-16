@@ -24,10 +24,8 @@ jobs:
         LABEL: update version
         repo_token: ${{ secrets.REPO_DISPATCH_PAT }}
       run: |
-        #git config --global user.name ${{ github.workflow }}
-        #git config --global user.email "${{ github.workflow }}@users.noreply.github.com"
-        git config --global user.name umyfashion
-        git config --global user.email umyfashion@gmail.com
+        git config --global user.name ${{ github.workflow }}
+        git config --global user.email "${{ github.workflow }}@users.noreply.github.com"
         gh api repos/{owner}/{repo}/labels -f name="$LABEL" -f color=2b9bdf -f description="update version" || true
         git checkout -b $BRANCH
         echo "Latest Verion: $version"
@@ -39,8 +37,8 @@ jobs:
         pr_link=`gh pr list -l "$LABEL"`
         echo $pr_link
         gh pr merge $pr_link --auto --merge
-        git config --global user.name arimaverick
-        git config --global user.email arimaverick@gmail.com
+        #git config --global user.name arimaverick
+        #git config --global user.email arimaverick@gmail.com
         export GITHUB_TOKEN=
         echo $repo_token > token.txt
         gh auth login --with-token < token.txt
