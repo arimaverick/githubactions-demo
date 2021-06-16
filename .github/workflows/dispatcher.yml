@@ -43,6 +43,5 @@ jobs:
         echo $repo_token > token.txt
         gh auth login --with-token < token.txt
         rm token.txt
-        git config -l 
         gh pr review $pr_link --approve -b "interesting"
         gh pr close $pr_link -d $BRANCH
