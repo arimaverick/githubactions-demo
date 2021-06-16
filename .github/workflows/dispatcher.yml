@@ -23,10 +23,8 @@ jobs:
         version: ${{ github.event.client_payload.version }}
         LABEL: update version
       run: |
-        #git config --global user.name ${{ github.workflow }}
-        #git config --global user.email "${{ github.workflow }}@users.noreply.github.com"
-        git config --global user.name umyfashion
-        git config --global user.email umyfashion@gmail.com
+        git config --global user.name ${{ github.workflow }}
+        git config --global user.email "${{ github.workflow }}@users.noreply.github.com"
         gh api repos/{owner}/{repo}/labels -f name="$LABEL" -f color=2b9bdf -f description="update version" || true
         git checkout -b $BRANCH
         echo "Latest Verion: $version"
