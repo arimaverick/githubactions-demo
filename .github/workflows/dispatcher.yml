@@ -41,6 +41,7 @@ jobs:
         gh pr merge $pr_link --auto --merge
         git config --global user.name arimaverick
         git config --global user.email arimaverick@gmail.com
+        export GITHUB_TOKEN=
         echo $repo_token > token.txt
         gh auth login --with-token < token.txt
         rm token.txt
