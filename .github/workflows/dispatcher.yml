@@ -35,3 +35,20 @@ jobs:
         pr_id=`gh pr list -l "$LABEL" | cut -f1`
         echo "PR Link: $pr_id"
         echo "::set-output name=pr_url::$pr_id"
+    - name: automerge-trap
+      id: autmerge
+      env:
+        version: ${{ github.event.client_payload.version }}
+        LABEL: update version
+        repo_token: ${{ secrets.REPO_DISPATCH_PAT }}
+        pr_id: ${{ steps.dispatchtrap.outputs.pr_id }}
+      run: |
+        #git config --global user.name arimaverick
+        #git config --global user.email arimaverick@gmail.com
+        export GITHUB_TOKEN=
+        echo $repo_token > token.txt
+        gh auth login --with-token < token.txt
+        rm token.txt
+        gh pr review $pr_id --approve -b "interesting"
+        gh pr merge $pr_id --merge -d $BRANCH
+        #gh pr close $pr_id -d $BRANCH
