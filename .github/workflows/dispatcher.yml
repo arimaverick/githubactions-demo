@@ -42,4 +42,4 @@ jobs:
         git config -l | grep user.name
         git config -l | grep user.email
         gh pr review $pr_link --approve -b "interesting"
-        gh pr close $pr_link -d $BRANCH
+        #gh pr close $pr_link -d $BRANCH
