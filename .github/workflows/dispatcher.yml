@@ -34,18 +34,17 @@ jobs:
         git push --set-upstream origin $BRANCH
         git config -l
         gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" --reviewer arimaverick
-        pr_link=`gh pr list -l "$LABEL"`
-        echo "PR Link: $pr_link"
-        echo "::set-output name=pr_url::$pr_link"
+        pr_id=`gh pr list -l "$LABEL" | cut -f1`
+        echo "PR Link: $pr_id"
+        echo "::set-output name=pr_url::$pr_id"
     - name: automerge-trap
       id: autmerge
       env:
         version: ${{ github.event.client_payload.version }}
         LABEL: update version
         repo_token: ${{ secrets.REPO_DISPATCH_PAT }}
-        pr_link: ${{ steps.dispatchtrap.outputs.pr_url }}
+        pr_link: ${{ steps.dispatchtrap.outputs.pr_id }}
       run: |
-        gh pr merge $pr_link --auto --merge -d $BRANCH
         #git config --global user.name arimaverick
         #git config --global user.email arimaverick@gmail.com
         export GITHUB_TOKEN=
@@ -53,4 +52,5 @@ jobs:
         gh auth login --with-token < token.txt
         rm token.txt
         gh pr review $pr_link --approve -b "interesting"
+        gh pr merge $pr_id --merge -d $BRANCH
         #gh pr close $pr_link -d $BRANCH
