@@ -17,11 +17,13 @@ jobs:
         ref: ${{ github.event.client_payload.ref }}
     - name: dispatcher-trap
       id: dispatchtrap
+      shell: bash
       env:
         version: ${{ github.event.client_payload.version }}
         LABEL: update version
         repo_token: ${{ secrets.REPO_DISPATCH_PAT }}
       run: |
+        #!/bin/bash
         git config --global user.name ${{ github.workflow }}
         git config --global user.email "${{ github.workflow }}@users.noreply.github.com"
         gh api repos/{owner}/{repo}/labels -f name="$LABEL" -f color=2b9bdf -f description="update version" || true
