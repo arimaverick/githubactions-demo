@@ -50,11 +50,11 @@ jobs:
         #git config --global user.name arimaverick
         #git config --global user.email arimaverick@gmail.com
         echo "PR ID: $pr_id in Branch: $BRANCH"
+        gh pr merge $pr_id --auto --merge --delete-branch $BRANCH
         export GITHUB_TOKEN=
         echo $repo_token > token.txt
         gh auth login --with-token < token.txt
         rm token.txt
         git branch --show-current
         gh pr review $pr_id --approve -b "interesting"
-        gh pr merge $pr_id --merge --delete-branch
         #gh pr close ${{ steps.dispatchtrap.outputs.pr_id }} -d $BRANCH
