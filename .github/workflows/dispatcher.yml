@@ -45,7 +45,7 @@ jobs:
         LABEL: update version
         repo_token: ${{ secrets.REPO_DISPATCH_PAT }}
         pr_id: ${{ steps.dispatchtrap.outputs.pr_id }}
-      if: ${{ steps.dispatcher.outputs.pr_id }}
+      if: ${{ steps.dispatchtrap.outputs.pr_id }}
       run: |
         #git config --global user.name arimaverick
         #git config --global user.email arimaverick@gmail.com
