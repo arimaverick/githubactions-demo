@@ -34,8 +34,9 @@ jobs:
         git push --set-upstream origin $BRANCH
         git config -l
         gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" --reviewer arimaverick
+        sleep 10
         pr_id=`gh pr list -l "$LABEL" | cut -f1`
-        echo "PR Link: $pr_id"
+        echo "PR ID: $pr_id"
         echo "::set-output name=pr_id::$pr_id"
     - name: automerge-trap
       id: autmerge
