@@ -53,6 +53,6 @@ jobs:
         echo $repo_token > token.txt
         gh auth login --with-token < token.txt
         rm token.txt
-        gh pr review $pr_id --approve -b "interesting"
-        gh pr merge $pr_id --merge -d $BRANCH
-        #gh pr close $pr_id -d $BRANCH
+        gh pr review ${{ steps.dispatchtrap.outputs.pr_id }} --approve -b "interesting"
+        gh pr merge ${{ steps.dispatchtrap.outputs.pr_id }} --merge -d $BRANCH
+        #gh pr close ${{ steps.dispatchtrap.outputs.pr_id }} -d $BRANCH
