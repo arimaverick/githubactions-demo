@@ -36,7 +36,7 @@ jobs:
         gh pr create -l "$LABEL" -B main -b "This is an automated PR" -t "Version Update" --reviewer arimaverick
         pr_id=`gh pr list -l "$LABEL" | cut -f1`
         echo "PR Link: $pr_id"
-        echo "::set-output name=pr_url::$pr_id"
+        echo "::set-output name=pr_id::$pr_id"
     - name: automerge-trap
       id: autmerge
       env:
